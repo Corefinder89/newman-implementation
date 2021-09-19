@@ -8,8 +8,8 @@ Steps to set up and run postman collections
 
 ## Packages used
 
-- newman ([](https://www.npmjs.com/package/newman))
-- newman-reporter-htmlextra ([](https://www.npmjs.com/package/newman-reporter-htmlextra))
+- [newman](https://www.npmjs.com/package/newman)
+- [newman-reporter-htmlextra](https://www.npmjs.com/package/newman-reporter-htmlextra)
 
 ## Project setup
 
