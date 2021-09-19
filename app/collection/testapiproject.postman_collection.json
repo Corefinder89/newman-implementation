@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "86da755d-7f4e-494e-9243-512f357cc957",
+		"name": "testapiproject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "module1",
+			"item": [
+				{
+					"name": "weather_city_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"check city name is Kolkata\", function(){",
+									"    var jsonData = pm.response.json()",
+									"    pm.expect(jsonData.name).to.eql(\"Kolkata\")",
+									"});",
+									"",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",",
+									"    \"type\": \"object\",",
+									"    \"coord\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\":{",
+									"            \"lon\": {",
+									"                \"description\": \"longitude of the city\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"lat\": {",
+									"                \"description\": \"latitude of the city\",    ",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"required\": [\"lon\", \"lat\"]",
+									"        }",
+									"    },",
+									"    \"weather\": {",
+									"        \"description\": \"weather data\",",
+									"        \"type\": \"array\",",
+									"        \"items\": {",
+									"            \"type\": \"object\"",
+									"        },",
+									"        \"minItems\": 1,",
+									"        \"uniqueItems\": true,",
+									"        \"properties\": {",
+									"            \"id\": {",
+									"                \"description\": \"weather type id\",",
+									"                \"type\": \"integer\"",
+									"            },",
+									"            \"main\": {",
+									"                \"description\": \"weather type\",",
+									"                \"type\": \"string\"",
+									"            },",
+									"            \"description\": {",
+									"                \"description\": \"long description\",",
+									"                \"type\": \"string\"",
+									"            },",
+									"            \"icon\": {",
+									"                \"description\": \"icon type\",",
+									"                \"type\": \"string\"",
+									"            }",
+									"        }",
+									"    },",
+									"    \"base\": {",
+									"        \"description\": \"Weather data center type\",",
+									"        \"type\": \"string\"",
+									"    },",
+									"    \"main\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"            \"temp\": {",
+									"                \"description\": \"temperature\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"feels_like\": {",
+									"                \"description\": \"temperature\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"temp_min\": {",
+									"                \"description\": \"minimum temperature\",    ",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"temp_max\": {",
+									"                \"description\": \"maximum temperature\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"pressure\": {",
+									"                \"description\": \"atmospheric pressure\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"humidity\": {",
+									"                \"description\": \"humidity of the city\",",
+									"                \"type\": \"number\"",
+									"            }",
+									"        }",
+									"    },",
+									"    \"visibility\": {",
+									"        \"description\": \"visibility\",",
+									"        \"type\": \"number\"",
+									"    },",
+									"    \"wind\": {",
+									"        \"properties\": {",
+									"            \"speed\": {",
+									"                \"description\": \"wind speed\",",
+									"                \"type\": \"number\"",
+									"            },",
+									"            \"deg\": {",
+									"                \"description\": \"wind deg\",",
+									"                \"type\": \"number\"",
+									"            }",
+									"        }",
+									"    },",
+									"    \"rain\": {",
+									"        \"properties\": {",
+									"            \"1h\": {",
+									"                \"description\": \"total rain\",",
+									"                \"type\": \"number\"",
+									"            }",
+									"        }",
+									"    },",
+									"    \"clouds\": {",
+									"        \"properties\": {",
+									"            \"all\": {",
+									"                \"description\": \"cloud figure\",",
+									"                \"type\": \"integer\"",
+									"            }",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"    pm.expect(tv4.validate(schema, pm.response.json()), JSON.stringify(tv4.errors)).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "api.openweathermap.org/data/2.5/weather?q=Kolkata&appid={{application_id}}",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Kolkata",
+									"description": "city name"
+								},
+								{
+									"key": "appid",
+									"value": "{{application_id}}",
+									"description": "application id\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "weather_city_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "api.openweathermap.org/data/2.5/weather?id=1275004&appid={{application_id}}",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1275004",
+									"description": "city id"
+								},
+								{
+									"key": "appid",
+									"value": "{{application_id}}",
+									"description": "application id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "weather_geographic_coord",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid={{application_id}}",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "35",
+									"description": "latitude"
+								},
+								{
+									"key": "lon",
+									"value": "139",
+									"description": "longitude"
+								},
+								{
+									"key": "appid",
+									"value": "{{application_id}}",
+									"description": "application id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
