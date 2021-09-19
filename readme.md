@@ -6,6 +6,11 @@ Steps to set up and run postman collections
 - `Node` version > 10 should be present (to check run `node -v`).
 - `NPM` should be installed within the system (to check run `npm -v`).
 
+## Packages used
+
+- newman
+- newman-reporter-htmlextra
+
 ## Project setup
 
 - Clone project.
