@@ -1,4 +1,5 @@
-# Newman 
+# Newman
+
 Steps to set up and run postman collections
 
 ## Pre-requisites
